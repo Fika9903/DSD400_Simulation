@@ -1,0 +1,19 @@
+
+    sequenceDiagram
+        participant M as Main
+        participant O as Organism
+        participant E as Environment
+        participant G as GameState
+        participant U as UI
+        M->>O: create organism
+        M->>E: create environment
+        M->>G: create game state(O, E)
+        M->>U: create UI(G)
+        loop game loop
+            U->>U: handle_events()
+            U->>G: update_state()
+            U->>U: draw()
+            G-->>M: game_over
+        end
+        M->>G: reset_game()
+    

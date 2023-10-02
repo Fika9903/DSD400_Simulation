@@ -1,0 +1,36 @@
+
+    classDiagram
+        class Organism{
+            +str species
+            +int health
+            +int speed
+            +int strength
+            +bool is_alive
+            +__init__(species: str, health: int, speed: int, strength: int)
+            +mutate()
+            +reproduce()
+        }
+        class Environment{
+            +int food_availability
+            +int predator_count
+            +__init__(food_availability: int, predator_count: int)
+            +change_conditions()
+        }
+        class GameState{
+            +bool game_over
+            +Organism organism
+            +Environment environment
+            +__init__(organism: Organism, environment: Environment)
+            +update_state()
+            +reset_game()
+        }
+        class UI{
+            +GameState game_state
+            +__init__(game_state: GameState)
+            +draw()
+            +handle_events()
+        }
+        GameState "1" -- "1" Organism: has
+        GameState "1" -- "1" Environment: has
+        UI "1" -- "1" GameState: manages
+    
